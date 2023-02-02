@@ -1,0 +1,19 @@
+<form [formGroup]="heroForm">
+    <label for="name">Name</label>
+    <input formControlName="name" type="text" id="name">
+    <div>
+        <small *ngIf="heroForm.get('name').invalid && heroForm.get('name').touched">
+            El campo name es obligatorio
+        </small>
+    </div>
+    <label for="superpower">Superpower</label>
+    <input formControlName="superpower" type="text" id="superpower">
+    <br>
+    <label for="hasCape">Has cape</label>
+    <input formControlName="hasCape" type="checkbox" id="hasCape">
+    <br>
+    <label for="height">Height</label>
+    <input formControlName="height" type="text" id="height">
+    <br>
+    <button (click)="save()">Save</button>
+</form>

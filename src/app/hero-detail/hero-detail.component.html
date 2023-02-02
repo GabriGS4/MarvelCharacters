@@ -1,0 +1,13 @@
+<div *ngIf="selectedHero">
+  <h1>Detalles de: {{ selectedHero.name | uppercase}}</h1>
+
+  <!--<div><span>id: </span>{{ selectedHero.id }}</div>
+  <div><span>name: </span> <input type="text" [(ngModel)]="selectedHero.name"></div>
+  <div><span>hasCape: </span>{{ selectedHero.hasCape }}</div>
+  <div><span>height: </span>{{ selectedHero.height }}</div>
+  <div><span>superpower: </span>{{ selectedHero.superpower }}</div>-->
+</div>
+
+<button>Guardar</button>
+<button (click)="goBack()">Atrás</button>
+

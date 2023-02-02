@@ -1,0 +1,44 @@
+<!--<div *ngIf="hero != null">-->
+
+<!-- LISTA -->
+<div class="flex justify-center flex-col items-center">
+  <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-4xl">
+    <span class="text-transparent bg-clip-text bg-gradient-to-r to-white from-red-800">Characters</span>
+  </h2>
+  <ul class="flex justify-center flex-col items-start max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+    <li *ngFor="let character of heroes" class="pb-3 sm:pb-4">
+      <div class="flex items-center space-x-4">
+        <div class="flex-shrink-0">
+          <img class="w-8 h-8 rounded-full" src="{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}">
+        </div>
+        <div class="flex-1 min-w-0">
+          <a routerLink="/detail/{{ character.id }}">
+            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+              {{ character.name }}
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+              {{ character.id }}
+            </p>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="flex flex-col items-center">
+    <span class="text-sm text-white ">
+      <span class="font-semibold text-white ">{{ offset + 1 }}</span> - <span class="font-semibold text-white ">{{
+        offset + 20 }}</span> of <span class="font-semibold text-white">{{ total }}</span>
+    </span>
+    <div class="inline-flex mt-2 xs:mt-0">
+      <button (click)="previousPage()" [disabled]="offset === 0"
+      class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+        Atrás
+      </button>
+      <button (click)="nextPage()" [disabled]="offset + limit >= total"
+        class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+        Siguiente
+      </button>
+    </div>
+  </div>
+</div>
