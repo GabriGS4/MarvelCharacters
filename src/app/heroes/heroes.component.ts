@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Hero} from '../hero';
+import {Hero} from '../interfaces/hero';
 import {HeroService} from "../hero.service";
 import {delay, Observable} from "rxjs";
 
@@ -32,7 +32,7 @@ export class HeroesComponent implements OnInit {
   //strig no sería necesario si inicializamos la variable directamente
 
   public getHeroes(): void {
-    this.heroService.getHeroes(this.limit, this.offset).subscribe(heroes => {
+    this.heroService.getAllHeroes(this.limit, this.offset).subscribe(heroes => {
       this.heroes = heroes;
       this.total = this.heroService.getTotal();
       });

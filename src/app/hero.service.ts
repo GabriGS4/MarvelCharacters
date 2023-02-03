@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {catchError, map, Observable, of, pluck} from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Data } from './data';
-import { Hero } from './hero';
+import { Data } from './interfaces/data';
+import { Hero } from './interfaces/hero';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class HeroService {
     return this.total;
   }
 
-  public getHeroes(limit?: number, offset?: number): Observable<Hero[]> {
+  public getAllHeroes(limit?: number, offset?: number): Observable<Hero[]> {
     let url = this.API_URL;
     if (offset !== undefined || limit !== undefined) {
       if (offset !== undefined) {
@@ -34,7 +34,7 @@ export class HeroService {
         url += `&limit=${limit}`
       }
     }
-    return this.http.get<{data: {results: Hero[], total: number}}>(url).pipe(
+    return this.http.get<Data>(url).pipe(
       map((data: Data) => {
         this.total = data.data.total;
         return data.data.results;
@@ -46,19 +46,52 @@ export class HeroService {
     );
   }
 
-  public getHeroeById(id: number): Observable<Hero> {
-    return this.http.get<Hero>(`${this.API_URL}/${id}`);
+  public getRandomHeroes(limit?: number): Observable<Hero[]> {
+    let url = this.API_URL;
+    if (limit !== undefined) {
+      if (limit !== undefined) {
+        url += `&limit=${limit}&offset=${Math.floor(Math.random() * 1542)}`
+      }
+    }
+    return this.http.get<Data>(url).pipe(
+      map((data: Data) => {
+        return data.data.results;
+      }),
+      catchError(e => {
+        console.error(e);
+        return [];
+      }),
+    );
   }
 
-  public updateHero(hero: Hero): Observable<void> {
-    return this.http.put<void>(`${this.API_URL}/${hero.id}`, hero);
+  public getHeroeById(id: number): Observable<Hero> {
+    let url = this.API_URL
+    if (id !== undefined) {
+      url += `&id=${id}`
+    }
+    return this.http.get<Data>(url).pipe(
+      map((data: Data) => {
+        return data.data.results[0];
+      }),
+      catchError(e => {
+        console.error(e);
+        return [];
+      }),
+    );
   }
 
   public searchHeroes(text: string): Observable<Hero[]> {
+    let url = this.API_URL;
     if (!text.trim()) {
       return of([]);
     }
+    url += `&nameStartsWith=${text}&limit=5`;
+    console.log(url)
     console.log('Hago peticion con ' , text)
-    return this.http.get<Hero[]>(`${this,this.API_URL}/?name=${text}`);
+    return this.http.get<Data>(url).pipe(
+      map((data: Data) => {
+        return data.data.results;
+      })
+    )
   }
 }

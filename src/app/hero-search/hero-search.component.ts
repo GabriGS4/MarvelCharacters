@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
-import { Hero } from '../hero';
+import { Hero } from '../interfaces/hero';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -21,12 +21,13 @@ export class HeroSearchComponent implements OnInit{
       distinctUntilChanged(),
       // completa el observable anterior y devuelve otro observable
       switchMap(term => {
-        return this.heroService.searchHeroes(term);
+        return this.heroService.searchHeroes(term)
       })
     );
   }
   public search(value: string) {
     //this.heroesFound$ = this.heroService.searchHeroes(value);
     this.searchTerm.next(value);
+
   }
 }

@@ -2,7 +2,10 @@ import { Hero } from "./hero";
 
 export interface Data {
     data: {
-        total: number,
+        offset: number;
+        limit: number;
+        total: number;
+        count: number;
         results: Hero[];
     };
 }

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Observable } from 'rxjs';
-import { Data } from '../data';
-import { Hero } from '../hero';
+import { Hero } from '../interfaces/hero';
 import {HeroService} from "../hero.service";
 
 @Component({
@@ -11,8 +10,7 @@ import {HeroService} from "../hero.service";
 })
 export class DashboardComponent implements OnInit{
   public heroes: Hero[] = [];
-  @Input() offset: number = 0;
-  @Input() limit: number = 20;
+  @Input() limit: number = 12;
 
   constructor(
     private heroService: HeroService) {
@@ -22,14 +20,8 @@ export class DashboardComponent implements OnInit{
   }
 
   public getHeroes(): void {
-    this.heroService.getHeroes(this.limit, this.getRandomOffset()).subscribe(heroes => {
-      console.log(this.heroes = heroes)
+    this.heroService.getRandomHeroes(this.limit).subscribe(heroes => {
       this.heroes = heroes;
       });
-  }
-
-  public getRandomOffset(): number {
-    console.log(this.heroService.getTotal())
-    return Math.floor(Math.random() * this.heroService.getTotal());
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Hero } from "../hero";
+import { Hero } from "../interfaces/hero";
 import { ActivatedRoute } from "@angular/router";
 import { HeroService } from "../hero.service";
 import { take } from "rxjs";
@@ -12,7 +12,7 @@ import { Location } from "@angular/common";
 })
 export class HeroDetailComponent implements OnInit {
 
-  @Input() selectedHero?: Hero;
+  public selectedCharacter: Hero;
   // function(hero:Hero)
   constructor(
     private route: ActivatedRoute,
@@ -22,20 +22,12 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id: number = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHeroeById(id).pipe(take(1)).subscribe(hero => {
-      this.selectedHero = hero;
+    this.heroService.getHeroeById(id).subscribe(hero => {
+      this.selectedCharacter = hero;
     });
-  }
-
-  ngOnDestroy(): void {
-    //this.subscripcion.unsubscribe();
   }
 
   public goBack(): void {
     this.location.back();
   }
-
-  /*public save(): void {
-    this.heroService.updateHero(this.selectedHero).subscribe();
-  }*/
 }
