@@ -1,8 +1,10 @@
-<div class="flex flex-col items-center border rounded-lg shadow md:flex-row w-full border-gray-700 bg-gray-800">
-  <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="{{ selectedCharacter.thumbnail.path }}.{{ selectedCharacter.thumbnail.extension }}" alt="">
+<div class="flex flex-col items-center border rounded-lg shadow md:flex-row w-full lg:max-h-[550px] object-scale-down border-gray-700 bg-gray-800 ">
+  <div class="w-auto">  
+    <img class=" w-full rounded-t-lg h-96 md:h-full md:rounded-none md:rounded-l-lg object-cover" src="{{ selectedCharacter.thumbnail.path }}.{{ selectedCharacter.thumbnail.extension }}" alt="">
+  </div>
   <div class="flex flex-col justify-center w-full">
     <div class="flex justify-center">
-      <p class="mb-2 text-2xl font-bold text-white">{{ selectedCharacter.name | uppercase}} Details</p>
+      <p class="mb-2 text-2xl font-bold text-white text-center">{{ selectedCharacter.name | uppercase}} Details</p>
     </div>
     <div class="flex flex-row justify-between items-center p-4">
       <h5 class="text-2xl font-bold text-white">ID: </h5>
@@ -13,7 +15,7 @@
         <p class="font-normal text-gray-400">{{ selectedCharacter.name }}</p>
     </div>
     <div class="flex justify-center">
-      <p class="font-normal text-gray-400">{{ selectedCharacter.name }} aparece en un total de {{ selectedCharacter.comics.available}} comics</p>
+      <p class="font-normal text-gray-400 text-center">{{ selectedCharacter.name }} aparece en un total de {{ selectedCharacter.comics.available}} comics</p>
     </div>
   </div>
 </div>

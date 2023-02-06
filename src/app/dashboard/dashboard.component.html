@@ -1,12 +1,12 @@
 <div class="flex justify-center flex-col items-center">
   <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white md:text-2xl lg:text-4xl">
-    <span class="text-transparent bg-clip-text bg-gradient-to-r to-white from-red-800">Top Characters</span>
+    <span class="uppercase text-transparent bg-clip-text bg-gradient-to-r to-white from-red-800">Top Characters</span>
   </h2>
   <app-hero-search></app-hero-search>
-  <ul class="columns-1 md:columns-2 lg:columns-4 mt-5 w-full px-20 md:px-40">
+  <ul class="columns-2 md:columns-3 lg:columns-4 mt-5 w-full px-5 md:px-14">
     <li *ngFor="let character of heroes">
       <a routerLink="/detail/{{ character.id }}">
-        <div class="grayscale hover:ease-in duration-300 hover:grayscale-0 hover:scale-105 hover:contrast-125 flex justify-center items-center bg-no-repeat w-full bg-center bg-cover h-96 mb-4 rounded" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}');">
+        <div class="grayscale hover:ease-in duration-300 hover:grayscale-0 hover:scale-105 hover:contrast-125 flex justify-center items-center bg-no-repeat w-full bg-center bg-cover h-72 sm:h-80 md:h-96 mb-4 rounded" style="background-image: url('{{ character.thumbnail.path }}.{{ character.thumbnail.extension }}');">
           <div class="font-extrabold text-2xl text-white border-t-4 border-b-4 py-3 mx-2">{{ character.name }}</div>
         </div>
       </a>
