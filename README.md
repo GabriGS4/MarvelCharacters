@@ -2,6 +2,10 @@
 
 To visit the website, click [here](https://gabrigs4.github.io/MarvelCharacters/dashboard).
 
+## To upload the website in GitHub Pages
+Run `ng add angular-cli-ghpages` to install the package that will allow you to upload the website in GitHub Pages.
+Run `ng deploy --base-href=urlGithubPages` to upload the website in GitHub Pages.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
